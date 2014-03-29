@@ -4,70 +4,56 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ResponseMetadata;
+import com.amazonaws.regions.Region;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
-import com.amazonaws.services.cloudwatch.model.DeleteAlarmsRequest;
-import com.amazonaws.services.cloudwatch.model.DescribeAlarmHistoryRequest;
-import com.amazonaws.services.cloudwatch.model.DescribeAlarmHistoryResult;
-import com.amazonaws.services.cloudwatch.model.DescribeAlarmsForMetricRequest;
-import com.amazonaws.services.cloudwatch.model.DescribeAlarmsForMetricResult;
-import com.amazonaws.services.cloudwatch.model.DescribeAlarmsRequest;
-import com.amazonaws.services.cloudwatch.model.DescribeAlarmsResult;
-import com.amazonaws.services.cloudwatch.model.DisableAlarmActionsRequest;
-import com.amazonaws.services.cloudwatch.model.EnableAlarmActionsRequest;
-import com.amazonaws.services.cloudwatch.model.GetMetricStatisticsRequest;
-import com.amazonaws.services.cloudwatch.model.GetMetricStatisticsResult;
-import com.amazonaws.services.cloudwatch.model.ListMetricsRequest;
-import com.amazonaws.services.cloudwatch.model.ListMetricsResult;
-import com.amazonaws.services.cloudwatch.model.PutMetricAlarmRequest;
-import com.amazonaws.services.cloudwatch.model.PutMetricDataRequest;
-import com.amazonaws.services.cloudwatch.model.SetAlarmStateRequest;
+import com.amazonaws.services.cloudwatch.model.*;
 
 /**
  * Throws UnsupportedOperationException for everything.
  */
 public class AbstractCloudwatch implements AmazonCloudWatch {
   @Override
-  public void setEndpoint(String endpoint) throws IllegalArgumentException {
+  public void setEndpoint(final String endpoint) throws IllegalArgumentException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void putMetricAlarm(PutMetricAlarmRequest putMetricAlarmRequest)
+  public void putMetricAlarm(final PutMetricAlarmRequest putMetricAlarmRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void putMetricData(PutMetricDataRequest putMetricDataRequest)
+  public void putMetricData(final PutMetricDataRequest putMetricDataRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public ListMetricsResult listMetrics(ListMetricsRequest listMetricsRequest)
+  public ListMetricsResult listMetrics(final ListMetricsRequest listMetricsRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public GetMetricStatisticsResult getMetricStatistics(GetMetricStatisticsRequest getMetricStatisticsRequest)
+  public GetMetricStatisticsResult getMetricStatistics(final GetMetricStatisticsRequest getMetricStatisticsRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void disableAlarmActions(DisableAlarmActionsRequest disableAlarmActionsRequest)
+  public void disableAlarmActions(final DisableAlarmActionsRequest disableAlarmActionsRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public DescribeAlarmsResult describeAlarms(DescribeAlarmsRequest describeAlarmsRequest)
+  public DescribeAlarmsResult describeAlarms(final DescribeAlarmsRequest describeAlarmsRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
@@ -75,35 +61,35 @@ public class AbstractCloudwatch implements AmazonCloudWatch {
 
   @Override
   public DescribeAlarmsForMetricResult describeAlarmsForMetric(
-      DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest)
+      final DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public DescribeAlarmHistoryResult describeAlarmHistory(DescribeAlarmHistoryRequest describeAlarmHistoryRequest)
+  public DescribeAlarmHistoryResult describeAlarmHistory(final DescribeAlarmHistoryRequest describeAlarmHistoryRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void enableAlarmActions(EnableAlarmActionsRequest enableAlarmActionsRequest)
+  public void enableAlarmActions(final EnableAlarmActionsRequest enableAlarmActionsRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void deleteAlarms(DeleteAlarmsRequest deleteAlarmsRequest)
+  public void deleteAlarms(final DeleteAlarmsRequest deleteAlarmsRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public void setAlarmState(SetAlarmStateRequest setAlarmStateRequest)
+  public void setAlarmState(final SetAlarmStateRequest setAlarmStateRequest)
       throws AmazonServiceException,
       AmazonClientException {
     throw new UnsupportedOperationException();
@@ -130,7 +116,11 @@ public class AbstractCloudwatch implements AmazonCloudWatch {
   }
 
   @Override
-  public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
+  public ResponseMetadata getCachedResponseMetadata(final AmazonWebServiceRequest request) {
     throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void setRegion(final Region arg0) throws IllegalArgumentException {
   }
 }

@@ -20,21 +20,17 @@
 
   <dependencies defaultconfmapping="sources->sources();%->default" defaultconf="default;sources">
     <!-- default (compile, test, runtime) dependencies -->
-    <dependency org="amazon" name="aws-java-sdk" rev="1.3.15" />
-    <dependency org="apache" name="commons-lang" rev="2.6" />
-    <dependency org="google" name="guava" rev="12.0.1" />
-
-    <!-- build time only dependencies -->
-    <dependency org="findbugs" name="findbugs" rev="1.3.9" conf="buildtime" />
-    <dependency org="checkstyle" name="checkstyle" rev="all-5.1" conf="buildtime" />
-    <dependency org="svntask" name="svntask" rev="1.0.7" conf="buildtime" />
-    <dependency org="cobertura" name="cobertura" rev="1.9.4.1" conf="buildtime" />
+    <dependency org="com.amazonaws" name="aws-java-sdk" rev="1.7.5" />
+    <dependency org="commons-lang" name="commons-lang" rev="2.6" />
+    <dependency org="com.google.guava" name="guava" rev="12.0.1" />
+    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.5" />
 
     <!-- test time only dependencies -->
     <dependency org="junit" name="junit" rev="4.8.2" conf="test" />
     <dependency org="bizo.com" name="concurrent-test-utils" rev="1.1-dev-20110613233842" conf="test" />
-    <dependency org="mockito" name="mockito" rev="1.8.5" conf="test" />
+    <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test" />
+    <dependency org="org.slf4j" name="slf4j-jdk14" rev="1.7.5" conf="test" />
 
-    <exclude org="google" module="google-collect" />
+    <exclude org="com.google.code.google-collections" module="google-collect" />
   </dependencies>
 </ivy-module>

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bizo.asperatus.model.CompoundDimension;
 import com.bizo.asperatus.model.Unit;
 import com.bizo.asperatus.tracker.AbstractMetricTracker;
@@ -18,8 +21,15 @@ public final class InMemoryTracker extends AbstractMetricTracker implements Metr
   private final AtomicReference<Map<MetricKey, MetricStatistics>> stats =
     new AtomicReference<Map<MetricKey, MetricStatistics>>(new HashMap<MetricKey, MetricStatistics>());
 
+  private static final Logger log = LoggerFactory.getLogger(InMemoryTracker.class);
+
   @Override
-  public synchronized void track(final String metricName, final Number value, final Unit unit, final Collection<CompoundDimension> dimensions) {
+  public synchronized void track(
+      final String metricName,
+      final Number value,
+      final Unit unit,
+      final Collection<CompoundDimension> dimensions) {
+    log.debug("Logging " + metricName + " = " + value + " " + unit);
     for (final CompoundDimension d : dimensions) {
       getOrCreateStats(new MetricKey(metricName, d), unit).add(value);
     }

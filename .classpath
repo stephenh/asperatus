@@ -3,19 +3,23 @@
 	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/default/aws-java-sdk.jar"/>
-	<classpathentry kind="lib" path="lib/default/commons-codec.jar"/>
-	<classpathentry kind="lib" path="lib/default/commons-lang.jar"/>
-	<classpathentry kind="lib" path="lib/default/commons-logging.jar"/>
-	<classpathentry kind="lib" path="lib/default/guava.jar"/>
-	<classpathentry kind="lib" path="lib/default/httpclient.jar"/>
-	<classpathentry kind="lib" path="lib/default/httpcore.jar"/>
-	<classpathentry kind="lib" path="lib/default/jackson-core-asl.jar"/>
-	<classpathentry kind="lib" path="lib/default/mail.jar"/>
-	<classpathentry kind="lib" path="lib/default/stax-api.jar"/>
-	<classpathentry kind="lib" path="lib/default/stax.jar"/>
-	<classpathentry kind="lib" path="lib/test/concurrent-test-utils.jar"/>
-	<classpathentry kind="lib" path="lib/test/junit.jar"/>
-	<classpathentry kind="lib" path="lib/test/mockito-all.jar"/>
+	<classpathentry kind="lib" path="lib/default/aws-java-sdk-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/commons-codec-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/commons-lang-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/commons-logging-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/guava-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/httpclient-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/httpcore-jar.jar"/>
+	<classpathentry kind="lib" path="lib/test/concurrent-test-utils-jar.jar"/>
+	<classpathentry kind="lib" path="lib/test/junit-jar.jar"/>
+	<classpathentry kind="lib" path="lib/test/mockito-all-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/slf4j-api-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/jackson-annotations-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/jackson-core-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/jackson-databind-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/joda-time-jar.jar"/>
+	<classpathentry kind="lib" path="lib/default/jsr305-jar.jar"/>
+	<classpathentry kind="lib" path="lib/test/slf4j-api-jar.jar"/>
+	<classpathentry kind="lib" path="lib/test/slf4j-jdk14-jar.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
