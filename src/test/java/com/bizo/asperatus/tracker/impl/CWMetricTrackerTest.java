@@ -16,6 +16,7 @@ import com.bizo.asperatus.model.Unit;
 import com.google.common.collect.Lists;
 
 public final class CWMetricTrackerTest {
+  
   private final TestCloudwatch cloudwatch = new TestCloudwatch();
   private final CWMetricTracker tracker = new CWMetricTracker(
     cloudwatch,
@@ -63,7 +64,6 @@ public final class CWMetricTrackerTest {
 
   @Test
   public void testMany() throws Exception {
-
     final List<Dimension> dims = new ArrayList<Dimension>();
     dims.add(new Dimension("d1", "a"));
 
@@ -71,7 +71,7 @@ public final class CWMetricTrackerTest {
       tracker.track(String.valueOf(i), 5, dims);
     }
 
-    Thread.sleep(1000);
+    tracker.close();
 
     for (int i = 0; i < 1000; i++) {
       assertTrue("Missing metric " + i, hasAggregation("TestNamespace", aggregation(String.valueOf(i), "d1", "a", 1, 5, 5, 5)));
@@ -80,7 +80,6 @@ public final class CWMetricTrackerTest {
 
   private boolean hasAggregation(final String namespace, final Aggregation agg) {
     final List<Aggregation> aggs = cloudwatch.aggregations.get(namespace);
-    
     return (aggs != null && aggs.contains(agg));
   }
   
