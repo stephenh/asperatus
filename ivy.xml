@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+  <info organisation="bizo.com" module="asperatus">
+    <license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.html/"/>
+  </info>
+
+  <configurations>
+    <conf name="default" description="core dependencies needed at compile-time and runtime" />
+    <conf name="buildtime" visibility="private" description="additional dependencies needed only at build time" />
+    <conf name="test" visibility="private" description="additional dependencies needed only for testing" />
+    <conf name="sources" description="source artifacts" />
+  </configurations>
+
+  <publications>
+    <artifact conf="default" />
+    <artifact name="${ivy.module}-src" type="source" ext="zip" conf="sources" />
+  </publications>
+
+  <dependencies defaultconfmapping="sources->sources();%->default" defaultconf="default;sources">
+    <!-- default (compile, test, runtime) dependencies -->
+    <dependency org="bizo.com" name="aws-java-sdk-all" rev="latest.integration" conf="default->cloudwatch" />
+    <dependency org="commons-lang" name="commons-lang" rev="2.6" />
+    <dependency org="com.google.guava" name="guava" rev="17.0" />
+
+    <!-- build time only dependencies -->
+
+    <!-- test time only dependencies -->
+    <dependency org="junit" name="junit" rev="4.11" conf="test" />
+    <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test" />
+  </dependencies>
+</ivy-module>
