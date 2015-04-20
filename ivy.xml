@@ -9,6 +9,7 @@
   <configurations>
     <conf name="default" description="core dependencies needed at compile-time and runtime" />
     <conf name="master" extends="default" description="a temp? fix since this was maven-based for awhile and builds expect a master conf" />
+    <conf name="runtime" extends="default" description="a temp? fix since this was maven-based for awhile and builds expect a runtime conf" />
     <conf name="buildtime" visibility="private" description="additional dependencies needed only at build time" />
     <conf name="test" visibility="private" description="additional dependencies needed only for testing" />
     <conf name="sources" description="source artifacts" />
