@@ -22,6 +22,13 @@ public abstract class AbstractMetricTracker implements MetricTracker {
   
   @Override
   public void track(final String metricName, final Number value, final Unit unit, final List<Dimension> dimensions) {
+    // Tracking with no dimensions doesn't really make sense, but tests might do it
+    // (if the default machine info is empty because the environment variables are
+    // missing), so go ahead and trust the caller knows what they're doing and pass
+    // this through as a similarly-empty CompoundDimension.
+    if (dimensions.isEmpty()) {
+      track(metricName, value, unit, Lists.newArrayList(new CompoundDimension()));
+    }
     for (final Dimension d : dimensions) {
       track(metricName, value, unit, Lists.newArrayList(new CompoundDimension(d)));
     }
