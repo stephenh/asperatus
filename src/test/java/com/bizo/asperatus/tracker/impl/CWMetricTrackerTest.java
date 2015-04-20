@@ -74,7 +74,7 @@ public final class CWMetricTrackerTest {
     Thread.sleep(400);
 
     for (int i = 0; i < 1000; i++) {
-      assertTrue(hasAggregation("TestNamespace", aggregation(String.valueOf(i), "d1", "a", 1, 5, 5, 5)));
+      assertTrue("Missing metric " + i, hasAggregation("TestNamespace", aggregation(String.valueOf(i), "d1", "a", 1, 5, 5, 5)));
     }
   }
 
