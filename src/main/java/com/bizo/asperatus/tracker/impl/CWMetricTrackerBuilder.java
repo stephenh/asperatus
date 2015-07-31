@@ -10,6 +10,7 @@ import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
 import com.bizo.asperatus.tracker.Env;
 import com.bizo.asperatus.tracker.MetricTracker;
 import com.bizo.asperatus.tracker.impl.auth.AsperatusDefaultCredentialsProvider;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 public final class CWMetricTrackerBuilder {
   // this is required - must be set
@@ -35,7 +36,7 @@ public final class CWMetricTrackerBuilder {
 
     if (executor == null) {
       executor = Executors.newScheduledThreadPool(5,
-        ThreadFactoryUtils.namedDaemonThreadFactory("asperatus-metrics"));
+        new ThreadFactoryBuilder().setDaemon(true).setNameFormat("asperatus-metrics-%d").build());
     }
 
     final AmazonCloudWatch cloudwatch = new AmazonCloudWatchClient(credentialsProvider);
