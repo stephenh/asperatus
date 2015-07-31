@@ -5,11 +5,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
 import com.bizo.asperatus.tracker.Env;
 import com.bizo.asperatus.tracker.MetricTracker;
-import com.bizo.asperatus.tracker.impl.auth.AsperatusDefaultCredentialsProvider;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 public final class CWMetricTrackerBuilder {
@@ -24,7 +24,7 @@ public final class CWMetricTrackerBuilder {
   private long flushDelay = 60;
   private TimeUnit flushUnit = TimeUnit.SECONDS;
 
-  private AWSCredentialsProvider credentialsProvider = new AsperatusDefaultCredentialsProvider();
+  private AWSCredentialsProvider credentialsProvider = new DefaultAWSCredentialsProviderChain();
 
   public MetricTracker toMetricTracker() {
     if (application == null) {
