@@ -5,11 +5,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
 import com.bizo.asperatus.tracker.Env;
 import com.bizo.asperatus.tracker.MetricTracker;
-import com.bizo.asperatus.tracker.impl.auth.AsperatusDefaultCredentialsProvider;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 public final class CWMetricTrackerBuilder {
   // this is required - must be set
@@ -23,7 +24,7 @@ public final class CWMetricTrackerBuilder {
   private long flushDelay = 60;
   private TimeUnit flushUnit = TimeUnit.SECONDS;
 
-  private AWSCredentialsProvider credentialsProvider = new AsperatusDefaultCredentialsProvider();
+  private AWSCredentialsProvider credentialsProvider = new DefaultAWSCredentialsProviderChain();
 
   public MetricTracker toMetricTracker() {
     if (application == null) {
@@ -32,16 +33,25 @@ public final class CWMetricTrackerBuilder {
 
     final String namespace = String.format("%s-%s", application, stage);
     final String endpoint = String.format("monitoring.%s.amazonaws.com", region);
-    
+
     if (executor == null) {
       executor = Executors.newScheduledThreadPool(5,
-        ThreadFactoryUtils.namedDaemonThreadFactory("asperatus-metrics"));
+        new ThreadFactoryBuilder().setDaemon(true).setNameFormat("asperatus-metrics-%d").build());
     }
-    
+
     final AmazonCloudWatch cloudwatch = new AmazonCloudWatchClient(credentialsProvider);
     cloudwatch.setEndpoint(endpoint);
     
-    return new CWMetricTracker(cloudwatch, namespace, executor, flushDelay, flushUnit);
+    CWMetricTracker mt = new CWMetricTracker(cloudwatch, namespace, executor, flushDelay, flushUnit);
+
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+      @Override
+      public void run() {
+        mt.close();
+      }
+    });
+
+    return mt;
   }
 
   public AWSCredentialsProvider getCredentialsProvider() {
