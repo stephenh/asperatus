@@ -32,16 +32,25 @@ public final class CWMetricTrackerBuilder {
 
     final String namespace = String.format("%s-%s", application, stage);
     final String endpoint = String.format("monitoring.%s.amazonaws.com", region);
-    
+
     if (executor == null) {
       executor = Executors.newScheduledThreadPool(5,
         ThreadFactoryUtils.namedDaemonThreadFactory("asperatus-metrics"));
     }
-    
+
     final AmazonCloudWatch cloudwatch = new AmazonCloudWatchClient(credentialsProvider);
     cloudwatch.setEndpoint(endpoint);
     
-    return new CWMetricTracker(cloudwatch, namespace, executor, flushDelay, flushUnit);
+    CWMetricTracker mt = new CWMetricTracker(cloudwatch, namespace, executor, flushDelay, flushUnit);
+
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+      @Override
+      public void run() {
+        mt.close();
+      }
+    });
+
+    return mt;
   }
 
   public AWSCredentialsProvider getCredentialsProvider() {

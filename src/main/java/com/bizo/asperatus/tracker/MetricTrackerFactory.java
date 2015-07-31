@@ -34,14 +34,11 @@ public final class MetricTrackerFactory {
     if (! persistMetrics) {
       return new SystemOutTracker();
     }
-    
     final CWMetricTrackerBuilder tracker = new CWMetricTrackerBuilder();
-    
     tracker.withApplication(envOrProperty("APPLICATION"));
     tracker.withRegion(envOrProperty("EC2_REGION", "us-east-1"));
     tracker.withStage(envOrProperty("STAGE", "dev"));
     tracker.withFlushDelay(flushDelay, flushDelayUnit);
-    
     return tracker.toMetricTracker();
   }
   
