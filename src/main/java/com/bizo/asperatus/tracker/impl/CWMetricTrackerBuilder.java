@@ -42,7 +42,7 @@ public final class CWMetricTrackerBuilder {
     final AmazonCloudWatch cloudwatch = new AmazonCloudWatchClient(credentialsProvider);
     cloudwatch.setEndpoint(endpoint);
     
-    CWMetricTracker mt = new CWMetricTracker(cloudwatch, namespace, executor, flushDelay, flushUnit);
+    final CWMetricTracker mt = new CWMetricTracker(cloudwatch, namespace, executor, flushDelay, flushUnit);
 
     Runtime.getRuntime().addShutdownHook(new Thread() {
       @Override
