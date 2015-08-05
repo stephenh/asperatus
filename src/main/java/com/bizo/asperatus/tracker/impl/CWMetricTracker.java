@@ -54,6 +54,10 @@ public final class CWMetricTracker extends AbstractMetricTracker implements Metr
 
   @Override
   public void close() {
+    if (executor.isShutdown()) {
+      return;
+    }
+
     try {
       Future<?> f = executor.submit(new PushStatsTask(executor));
       f.get(5, TimeUnit.SECONDS);
